@@ -1,8 +1,16 @@
-euclidean-distance
+Euclidean Distance
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the Euclidean distance between two arrays.
+> Computes the [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) between two arrays.
+
+The [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) is the straight line distance between two points in Euclidean space.
+
+
+<div align="center">
+	<img src="https://github.com/compute-io/euclidean-distance/blob/master/docs/img/eqn.png" alt="Euclidean distance formula" height="64px">
+	<br>
+</div>
 
 
 ## Installation
@@ -17,18 +25,78 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-euclidean-distance' );
+var euclidean = require( 'compute-euclidean-distance' );
 ```
 
-#### foo( arr )
+#### euclidean( x, y[, accessor] )
 
-What does this function do?
+Computes the [Euclidean distance](http://en.wikipedia.org/wiki/Euclidean_distance) between two arrays.
+
+``` javascript
+var x = [ 2, 4, 5, 3, 8, 2 ],
+	y = [ 3, 1, 5, -3, 7, 2 ];
+
+var d = euclidean( x, y );
+// returns ~6.86
+```
+
+For object `arrays`, provide an accessor `function` for accessing `numeric` values.
+
+``` javascript
+var x, y, d;
+
+x = [
+	[1,2],
+	[2,4],
+	[3,5],
+	[4,3],
+	[5,8],
+	[6,2]
+];
+
+y = [
+	{'y':3},
+	{'y':1},
+	{'y':5},
+	{'y':-3},
+	{'y':7},
+	{'y':2}
+];
+
+function getValue( d, i, j ) {
+	if ( j === 0 ) {
+		return d[ 1 ];
+	}
+	return d.y;
+}
+
+d = euclidean( x, y, getValue );
+// returns returns ~6.86
+```
+
+The accessor `function` is provided three arguments:
+
+-	__d__: current datum.
+-	__i__: current datum index.
+-	__j__: array index; e.g., array `x` has index `0`, and array `y` has index `1`.
+
+If provided empty `arrays`, the function returns `null`.
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-euclidean-distance' );
+var euclidean = require( 'compute-euclidean-distance' );
+
+var x = new Array( 100 ),
+	y = new Array( 100 );
+
+for ( var i = 0; i < x.length; i++ ) {
+	x[ i ] = Math.round( Math.random()*10 );
+	y[ i ] = Math.round( Math.random()*10 );
+}
+
+console.log( euclidean( x, y ) );
 ```
 
 To run the example code from the top-level application directory,
@@ -36,6 +104,15 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## References
+
+- 	Dahlquist, Germund and Bjorck, Ake. _Numerical Methods in Scientific Computing_.
+- 	Blue, James (1978) "A Portable Fortran Program To Find the Euclidean Norm of a Vector". _ACM Transactions on Mathematical Software_.
+- 	Higham, Nicholas J. _Accuracy and Stability of Numerical Algorithms, Second Edition_.
+
+This module implements a one-pass algorithm proposed by S.J. Hammarling.
 
 
 ## Tests

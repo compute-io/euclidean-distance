@@ -25,12 +25,26 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "mathematics",
+    "math",
+    "vector",
+    "distance",
+    "dist",
+    "norm",
+    "l2norm",
+    "points",
+    "euclidean",
+    "space",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/euclidean-distance/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-array": "^1.0.5",
+    "validate.io-function": "^1.0.2"
+  },
   "devDependencies": {
     "chai": "2.x.x",
     "mocha": "2.x.x",
