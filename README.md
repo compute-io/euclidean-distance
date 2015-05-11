@@ -71,7 +71,7 @@ function getValue( d, i, j ) {
 }
 
 d = euclidean( x, y, getValue );
-// returns returns ~6.86
+// returns ~6.86
 ```
 
 The accessor `function` is provided three arguments:
