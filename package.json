@@ -1,6 +1,6 @@
 {
   "name": "compute-euclidean-distance",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Computes the Euclidean distance between two arrays.",
   "author": {
     "name": "Athan Reines",
